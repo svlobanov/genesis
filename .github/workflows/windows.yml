@@ -37,4 +37,4 @@ jobs:
         ninja -C build
 
     - name: Run tests
-      run: ctest --test-dir build
+      run: ctest --test-dir build --rerun-failed --output-on-failure
