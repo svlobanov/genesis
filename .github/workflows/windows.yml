@@ -33,7 +33,7 @@ jobs:
 
     - name: Build project
       run: |
-        cmake -DCMAKE_C_COMPILER=${{ matrix.CC }} -DCMAKE_CXX_COMPILER=${{ matrix.CXX }} -DCMAKE_BUILD_TYPE=Release -Bbuild -GNinja 
+        cmake -DCMAKE_C_COMPILER=${{ matrix.CC }} -DCMAKE_CXX_COMPILER=${{ matrix.CXX }} -Bbuild -GNinja 
         ninja -C build
 
     - name: Run tests
