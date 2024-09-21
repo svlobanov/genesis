@@ -48,7 +48,7 @@ protected:
 		// in most cases we need a simple window with the same characteristics
 		m_window = SDL_CreateWindow(
 					title.data(),
-					SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+					0, 0,
 					width, height,
 					SDL_WINDOW_SHOWN
 					);
