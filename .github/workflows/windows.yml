@@ -26,7 +26,7 @@ jobs:
     - name: Run GUI tests
       run: |
         choco install winappdriver --install-arguments="INSTALLDIR=c:\winappdriver"
-        start c:\winappdriver\winappdriver
+        start /c c:\winappdriver\winappdriver.exe
         calc
 
     - uses: actions/checkout@v4
