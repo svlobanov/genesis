@@ -57,16 +57,12 @@ public:
 		SDL_RendererInfo rendererInfo;
 		if(SDL_GetRendererInfo(m_renderer, &rendererInfo) == 0)
 		{
-			std::cout << "Renderer name: " << rendererInfo.name << std::endl;
-
-			if(rendererInfo.flags & SDL_RENDERER_SOFTWARE)
-				std::cout << "Renderer uses software rendering." << std::endl;
-			if(rendererInfo.flags & SDL_RENDERER_ACCELERATED)
-				std::cout << "Renderer uses hardware acceleration." << std::endl;
-			if(rendererInfo.flags & SDL_RENDERER_PRESENTVSYNC)
-				std::cout << "Renderer uses vsync." << std::endl;
-			if(rendererInfo.flags & SDL_RENDERER_TARGETTEXTURE)
-				std::cout << "Renderer supports rendering to texture." << std::endl;
+			std::cout << "Renderer name for window '" << title << "' : " << rendererInfo.name << ". Flags:";
+			std::cout << " SOFTWARE=" << !!(rendererInfo.flags & SDL_RENDERER_SOFTWARE);
+			std::cout << " ACCELERATED=" << !!(rendererInfo.flags & SDL_RENDERER_ACCELERATED);
+			std::cout << " PRESENTVSYNC=" << !!(rendererInfo.flags & SDL_RENDERER_PRESENTVSYNC);
+			std::cout << " TARGETTEXTURE=" << !!(rendererInfo.flags & SDL_RENDERER_TARGETTEXTURE);
+			std::cout << std::endl;
 		}
 		else
 		{
