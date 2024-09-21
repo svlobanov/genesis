@@ -21,14 +21,17 @@ jobs:
             # assume that microsoft cl is always preinstalled
             choco_package:
 
+                
     steps:
-    - uses: actions/checkout@v4
-
     - name: Run GUI tests
       run: |
-        choco install winappdriver
-        start winappdriver
+        choco install winappdriver --install-arguments="INSTALLDIR=c:\winappdriver"
+        start c:\winappdriver\winappdriver
         calc
+
+    - uses: actions/checkout@v4
+
+
 
     - name: Install build tools using choco
       run: choco install ${{ matrix.choco_package }} ninja -y
