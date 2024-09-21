@@ -24,7 +24,9 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: cpp
-        paths: genesis
+        config: |
+          paths: 
+          - genesis
 
     - name: Build project
       run: |
