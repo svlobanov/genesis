@@ -69,13 +69,13 @@ std::vector<std::unique_ptr<sdl::displayable>> create_displays(smd& smd, std::st
 
 	std::vector<std::unique_ptr<sdl::displayable>> displays;
 
-	displays.push_back(
+	/*displays.push_back(
 		std::make_unique<sdl::palette_display>(smd.vdp().cram())
-	);
+	);*/
 
 	using vdp::impl::plane_type;
 
-	displays.push_back(
+	/*displays.push_back(
 		std::make_unique<sdl::plane_display>("plane a",
 			[&smd]() { return smd.vdp().render().plane_width_in_pixels(plane_type::a); },
 			[&smd]() { return smd.vdp().render().plane_hight_in_pixels(plane_type::a); },
@@ -100,7 +100,7 @@ std::vector<std::unique_ptr<sdl::displayable>> create_displays(smd& smd, std::st
 			[&smd](unsigned row_number, sdl::plane_display::row_buffer buffer)
 				{ return smd.vdp().render().get_sprite_row(row_number, buffer); }
 		)
-	);
+	);*/
 
 	displays.push_back(
 		std::make_unique<sdl::plane_display>(rom_title,

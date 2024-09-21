@@ -10,7 +10,7 @@ set(SDL_TEST FALSE CACHE BOOL "Do not build the SDL test library")
 FetchContent_Declare(
 	SDL
 	GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-	GIT_TAG release-2.28.5
+	GIT_TAG release-2.30.6
 	# GIT_TAG main # use SDL3::SDL3
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE

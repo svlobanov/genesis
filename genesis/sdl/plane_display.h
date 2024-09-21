@@ -42,7 +42,7 @@ public:
 			throw std::invalid_argument("get_height");
 		if(get_row == nullptr)
 			throw std::invalid_argument("get_height");
-		
+
 		m_get_width = get_width;
 		m_get_height = get_height;
 		m_get_row = get_row;
@@ -53,7 +53,25 @@ public:
 		m_title = title;
 
 		create_window(title, m_width, m_height);
-		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
+		m_renderer = SDL_CreateRenderer(m_window, -1, 0);
+		SDL_RendererInfo rendererInfo;
+		if(SDL_GetRendererInfo(m_renderer, &rendererInfo) == 0)
+		{
+			std::cout << "Renderer name: " << rendererInfo.name << std::endl;
+
+			if(rendererInfo.flags & SDL_RENDERER_SOFTWARE)
+				std::cout << "Renderer uses software rendering." << std::endl;
+			if(rendererInfo.flags & SDL_RENDERER_ACCELERATED)
+				std::cout << "Renderer uses hardware acceleration." << std::endl;
+			if(rendererInfo.flags & SDL_RENDERER_PRESENTVSYNC)
+				std::cout << "Renderer uses vsync." << std::endl;
+			if(rendererInfo.flags & SDL_RENDERER_TARGETTEXTURE)
+				std::cout << "Renderer supports rendering to texture." << std::endl;
+		}
+		else
+		{
+			std::cerr << "Could not get renderer info! SDL_Error: " << SDL_GetError() << std::endl;
+		}
 		m_texture = create_texture(m_width, m_height);
 	}
 
