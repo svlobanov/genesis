@@ -1,0 +1,37 @@
+name: CodeQL Analysis CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  codeql-analysis:
+    runs-on: macos-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install llvm and cmake from homebrew
+      run: brew install llvm cmake
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: cpp
+
+    - name: Build project
+      run: |
+        cmake -G "Unix Makefiles" -Bbuild
+        cd build && make -j3
+      env:
+        CC: /opt/homebrew/opt/llvm/bin/clang
+        CXX: /opt/homebrew/opt/llvm/bin/clang++
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
