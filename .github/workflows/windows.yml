@@ -28,6 +28,7 @@ jobs:
         choco install winappdriver --install-arguments="INSTALLDIR=c:\winappdriver"
         start cmd /c "c:\winappdriver\Windows Application Driver\WinAppDriver.exe"
         calc
+      shell: cmd
 
     - uses: actions/checkout@v4
 
