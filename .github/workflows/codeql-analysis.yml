@@ -10,37 +10,19 @@ jobs:
   codeql-analysis:
     runs-on: ubuntu-24.04
     permissions:
-      actions: read
-      contents: read
+      packages: read
       security-events: write
-
 
     steps:
     - uses: actions/checkout@v4
-
-    #- name: Install llvm and cmake from homebrew
-    #  run: brew install llvm cmake
-
-    - name: cmake
-      run: cmake -G "Unix Makefiles" -Bbuild
-      env:
-        CC: clang
-        CXX: clang++
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: cpp
-        config: |
-          paths: 
-          - genesis
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build project
-      run: cd build && make -j
+        build-mode: autobuild
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        category: "/language:cpp"
