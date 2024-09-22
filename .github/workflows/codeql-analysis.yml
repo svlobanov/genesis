@@ -8,7 +8,7 @@ on:
 
 jobs:
   codeql-analysis:
-    runs-on: macos-latest
+    runs-on: ubuntu-24.04
     permissions:
       actions: read
       contents: read
@@ -18,14 +18,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install llvm and cmake from homebrew
-      run: brew install llvm cmake
+    #- name: Install llvm and cmake from homebrew
+    #  run: brew install llvm cmake
 
     - name: cmake
       run: cmake -G "Unix Makefiles" -Bbuild
       env:
-        CC: /opt/homebrew/opt/llvm/bin/clang
-        CXX: /opt/homebrew/opt/llvm/bin/clang++
+        CC: clang
+        CXX: clang++
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
@@ -38,7 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build project
-      run: cd build && make -j3
+      run: cd build && make -j
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

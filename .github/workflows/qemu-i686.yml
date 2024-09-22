@@ -2,9 +2,9 @@ name: Qemu i686 CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master1" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master1" ]
 
 jobs:
   build-and-test:
