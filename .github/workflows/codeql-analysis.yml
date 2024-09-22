@@ -21,11 +21,11 @@ jobs:
       with:
         languages: cpp
         build-mode: autobuild
-      env:
-        CC: clang
-        CXX: clang++
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:cpp"
+    env:
+      CC: clang
+      CXX: clang++
