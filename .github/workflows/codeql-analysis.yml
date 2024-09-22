@@ -21,9 +21,9 @@ jobs:
       with:
         languages: cpp
         build-mode: autobuild
-        config: |
-          paths-ignore:
-          - _deps/sdl-src
+      env:
+        CC: clang
+        CXX: clang++
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
